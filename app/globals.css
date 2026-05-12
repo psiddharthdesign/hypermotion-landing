@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/**
+ * Light-mode design tokens. Inspired by minimal landing pages on Mobbin
+ * (Apollo, AutoSend, Base44) — pure white background, near-black text,
+ * a single accent for the primary CTA, very light grey for borders and
+ * code blocks. No dark surfaces anywhere.
+ */
+@theme {
+  --color-bg: #ffffff;
+  --color-bg-soft: #fafafa;
+  --color-surface: #f6f6f8;
+  --color-border: #ececef;
+  --color-border-strong: #dcdce0;
+  --color-text: #0a0a0c;
+  --color-text-muted: #5b5b62;
+  --color-text-subtle: #8a8a91;
+  --color-accent: #0a0a0c;        /* primary CTA fill — clean black */
+  --color-accent-soft: #f0f4ff;   /* if we ever need a soft tint */
+
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter',
+    system-ui, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    /* Very subtle warm gradient at the top — Base44-style. Fades to flat
+       before the fold so the rest of the page reads as pure white. */
+    background-image:
+      radial-gradient(
+        ellipse 70% 50% at 50% -10%,
+        rgba(255, 222, 197, 0.35) 0%,
+        rgba(220, 230, 255, 0.18) 35%,
+        transparent 70%
+      );
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(10, 10, 12, 0.12);
+    color: var(--color-text);
+  }
+}

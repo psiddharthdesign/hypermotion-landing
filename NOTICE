@@ -1,0 +1,13 @@
+hypermotion-landing
+Copyright 2026 Siddharth Ponnapalli
+
+This product is licensed under the Apache License, Version 2.0. See LICENSE
+for the full text.
+
+Third-party dependencies:
+  - Next.js (MIT)         https://github.com/vercel/next.js
+  - React, React-DOM (MIT) https://github.com/facebook/react
+  - Tailwind CSS (MIT)    https://github.com/tailwindlabs/tailwindcss
+  - TypeScript (Apache-2.0) https://github.com/microsoft/TypeScript
+
+Full pinned versions in pnpm-lock.yaml after `pnpm install`.
