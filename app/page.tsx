@@ -84,7 +84,7 @@ function Hero() {
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-balance text-[17px] leading-[1.55] text-text-muted sm:text-[18px]">
         Auto-layout, 3D camera, multi-chapter timeline, pixel-correct
-        MP4 / WebM / GIF. Apache 2.0. Mac and Windows.
+        MP4 / WebM / GIF. Open source, free forever.
       </p>
       <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
         <Link
@@ -100,9 +100,7 @@ function Hero() {
           Source on GitHub
         </Link>
       </div>
-      <p className="mt-5 text-[12.5px] text-text-subtle">
-        Also available for Windows · Free forever
-      </p>
+      <p className="mt-5 text-[12.5px] text-text-subtle">Windows build coming soon</p>
     </section>
   )
 }
