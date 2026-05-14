@@ -43,6 +43,12 @@ function Nav() {
       </Link>
       <div className="flex items-center gap-2 text-[13px]">
         <Link
+          href="/docs"
+          className="px-3 py-1.5 text-text-muted hover:text-text"
+        >
+          Docs
+        </Link>
+        <Link
           href="https://github.com/psiddharthdesign/hypermotion"
           className="px-3 py-1.5 text-text-muted hover:text-text"
         >
@@ -100,72 +106,16 @@ function Hero() {
           Source on GitHub
         </Link>
       </div>
-      <p className="mt-5 text-[12.5px] text-text-subtle">macOS only for now</p>
-      <InstallNote />
-    </section>
-  )
-}
-
-function InstallNote() {
-  return (
-    <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-border bg-surface/60 p-6 text-left">
-      <p className="mb-1 text-[12px] font-semibold uppercase tracking-[0.18em] text-text-subtle">
-        First-time install on macOS
-      </p>
-      <p className="mb-5 text-[13.5px] leading-[1.55] text-text-muted">
-        v0.1.x ships unsigned, so macOS will block the first open with a
-        &ldquo;damaged&rdquo; dialog. Two-step setup, then it opens normally
-        forever.
-      </p>
-
-      <ol className="space-y-4 text-[13.5px] leading-[1.55] text-text">
-        <li className="flex gap-3">
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-white">
-            1
-          </span>
-          <div>
-            <div className="font-medium">
-              Drag <span className="font-mono">hyper-motion</span> to{' '}
-              <span className="font-mono">/Applications</span>
-            </div>
-            <div className="mt-0.5 text-[12.5px] text-text-muted">
-              From the DMG window like any other Mac app.
-            </div>
-          </div>
-        </li>
-
-        <li className="flex gap-3">
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-white">
-            2
-          </span>
-          <div className="w-full">
-            <div className="font-medium">Open Terminal and paste these two lines</div>
-            <pre className="mt-2 overflow-x-auto rounded-lg border border-border bg-white p-3 font-mono text-[12px] leading-relaxed text-text">
-{`xattr -cr /Applications/hyper-motion.app
-codesign --force --deep --sign - /Applications/hyper-motion.app`}
-            </pre>
-            <div className="mt-1.5 text-[12.5px] text-text-muted">
-              Strips macOS&rsquo;s download quarantine and re-applies an ad-hoc
-              signature locally. After this, double-click the app and it
-              opens.
-            </div>
-          </div>
-        </li>
-      </ol>
-
-      <p className="mt-6 border-t border-border pt-4 text-[12.5px] leading-[1.55] text-text-subtle">
-        Why? Apple requires paid Developer signing + notarization for
-        downloads to skip the warning entirely. Planned for v0.2.{' '}
+      <p className="mt-5 text-[12.5px] text-text-subtle">
+        macOS only for now ·{' '}
         <Link
-          href="https://github.com/psiddharthdesign/hypermotion#install"
-          className="underline hover:text-text"
+          href="/docs#install"
+          className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"
         >
-          Build from source
-        </Link>{' '}
-        if you&rsquo;d rather skip these steps — locally-built apps never get
-        the quarantine flag.
+          first-time install needs a one-line setup
+        </Link>
       </p>
-    </div>
+    </section>
   )
 }
 
