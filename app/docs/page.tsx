@@ -23,6 +23,7 @@ export default function DocsPage() {
       <Nav />
       <Hero />
       <InstallSection />
+      <FigmaPluginSection />
       <ComingSoon />
       <Footer />
     </main>
@@ -198,6 +199,99 @@ open release/mac-arm64/hyper-motion.app`}
           Not shipping yet. The Windows build pipeline works but
           we&rsquo;re focusing on macOS polish first. Coming in a later
           v0.1.x release.
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function FigmaPluginSection() {
+  return (
+    <section
+      id="figma-plugin"
+      className="mx-auto max-w-3xl px-6 py-12 scroll-mt-20"
+    >
+      <h2 className="text-2xl font-semibold tracking-tight text-text">
+        Figma plugin
+      </h2>
+      <p className="mt-3 text-[15px] leading-[1.6] text-text-muted">
+        Copy frames, text, layout, and strokes from Figma straight into
+        hyper-motion. Auto-layout, gradients, image fills, and per-corner
+        radii round-trip. Vector shapes get rasterized to inline SVG.
+      </p>
+
+      <ol className="mt-8 space-y-8">
+        <Step
+          n={1}
+          title="Build the plugin"
+          body={
+            <>
+              <p className="text-[14px] leading-[1.6] text-text-muted">
+                The plugin lives in{' '}
+                <span className="font-mono">figma-plugin/</span> inside the
+                main repo. Clone and build:
+              </p>
+              <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
+{`git clone https://github.com/psiddharthdesign/hypermotion.git
+cd hypermotion/figma-plugin
+pnpm install
+pnpm build`}
+              </pre>
+              <p className="mt-3 text-[14px] leading-[1.6] text-text-muted">
+                This produces{' '}
+                <span className="font-mono">dist/code.js</span> and{' '}
+                <span className="font-mono">dist/ui.html</span> next to{' '}
+                <span className="font-mono">manifest.json</span>.
+              </p>
+            </>
+          }
+        />
+
+        <Step
+          n={2}
+          title="Import into Figma"
+          body={
+            <p className="text-[14px] leading-[1.6] text-text-muted">
+              In Figma desktop, open any file and choose{' '}
+              <span className="font-semibold text-text">
+                Plugins → Development → Import plugin from manifest…
+              </span>{' '}
+              then point at{' '}
+              <span className="font-mono">figma-plugin/manifest.json</span>.
+              The plugin appears under{' '}
+              <span className="font-semibold text-text">
+                Plugins → Development → Hyper Motion Import
+              </span>
+              .
+            </p>
+          }
+        />
+
+        <Step
+          n={3}
+          title="Copy and paste"
+          body={
+            <p className="text-[14px] leading-[1.6] text-text-muted">
+              Select layers in Figma, run the plugin, click{' '}
+              <span className="font-semibold text-text">
+                Copy to Hyper Motion
+              </span>
+              , then paste (Cmd+V) into the hyper-motion canvas. Layout
+              sizing, fills, strokes, and per-corner radii come through.
+            </p>
+          }
+        />
+      </ol>
+
+      <div className="mt-12 rounded-2xl border border-border bg-surface/60 p-6">
+        <h3 className="text-[15px] font-semibold text-text">
+          Why not the Figma Community?
+        </h3>
+        <p className="mt-2 text-[14px] leading-[1.6] text-text-muted">
+          Figma Community publishing is on the v0.2 roadmap — one-click
+          install, no terminal. For the v0.1.x research preview, dev-mode
+          import is the path. The plugin source ships alongside the app so
+          users can audit / modify it.
         </p>
       </div>
     </section>
