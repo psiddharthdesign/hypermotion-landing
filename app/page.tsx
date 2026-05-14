@@ -79,20 +79,18 @@ function Logo() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-3xl px-6 pb-24 pt-16 text-center sm:pt-24">
-      <p className="mb-6 text-[11px] font-medium uppercase tracking-[0.2em] text-text-subtle">
+    <section className="mx-auto max-w-4xl px-6 pb-28 pt-24 sm:pt-40">
+      <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
         Open source · v0.1.0
       </p>
-      <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-text sm:text-6xl">
-        A motion tool for designers
-        <br className="hidden sm:block" />
-        who think in layouts.
+      <h1 className="max-w-3xl text-balance text-[44px] font-semibold leading-[1.05] tracking-tight text-text sm:text-[68px]">
+        A motion tool for designers who think in layouts.
       </h1>
-      <p className="mx-auto mt-6 max-w-xl text-balance text-[17px] leading-[1.55] text-text-muted sm:text-[18px]">
+      <p className="mt-8 max-w-xl text-[17px] leading-[1.55] text-text-muted sm:text-[18px]">
         Auto-layout, 3D camera, multi-chapter timeline, pixel-correct
         MP4 / WebM / GIF. Open source, free forever.
       </p>
-      <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <div className="mt-10 flex flex-wrap items-center gap-3">
         <Link
           href="https://github.com/psiddharthdesign/hypermotion/releases"
           className="rounded-full bg-accent px-5 py-2.5 text-[14px] font-medium text-white hover:brightness-110"
@@ -172,8 +170,11 @@ function Features() {
     },
   ]
   return (
-    <section className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="mb-12 text-balance text-center text-2xl font-semibold tracking-tight text-text sm:text-3xl">
+    <section className="mx-auto max-w-4xl px-6 py-24">
+      <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
+        v0.1.0
+      </p>
+      <h2 className="mb-12 max-w-2xl text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
         What ships today.
       </h2>
       <div className="grid gap-6 sm:grid-cols-2">
@@ -197,15 +198,19 @@ function Features() {
 
 function Cli() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-20">
+    <section className="mx-auto max-w-4xl px-6 py-24">
+      <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
+        CLI &amp; MCP
+      </p>
       <h2 className="text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
         Render from the terminal.
       </h2>
       <p className="mt-3 max-w-xl text-[15px] leading-[1.55] text-text-muted">
         Optional companion package. Drive renders from a script, a CI job,
-        or an AI coding agent.
+        or an AI coding agent — Claude Code, Codex, any MCP-compatible
+        client.
       </p>
-      <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-surface">
+      <div className="mt-7 max-w-2xl overflow-hidden rounded-2xl border border-border bg-surface">
         <div className="border-b border-border bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-subtle">
           Terminal
         </div>
@@ -220,6 +225,15 @@ $ hypermotion render -o demo.mp4 -q 4k
 $ claude mcp add hypermotion -- hypermotion-mcp`}
         </pre>
       </div>
+      <p className="mt-4 text-[12.5px] text-text-subtle">
+        Full guide ·{' '}
+        <Link
+          href="/docs"
+          className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"
+        >
+          read the docs
+        </Link>
+      </p>
     </section>
   )
 }

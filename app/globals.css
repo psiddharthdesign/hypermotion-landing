@@ -1,10 +1,9 @@
 @import 'tailwindcss';
 
 /**
- * Light-mode design tokens. Inspired by minimal landing pages on Mobbin
- * (Apollo, AutoSend, Base44) — pure white background, near-black text,
- * a single accent for the primary CTA, very light grey for borders and
- * code blocks. No dark surfaces anywhere.
+ * Light-mode design tokens. Inspired by Hers's minimal pattern on Mobbin
+ * — pure white background, near-black text, a single dark CTA, near-zero
+ * decoration. The composition does the work, not the canvas.
  */
 @theme {
   --color-bg: #ffffff;
@@ -33,16 +32,8 @@
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    /* Very subtle warm gradient at the top — Base44-style. Fades to flat
-       before the fold so the rest of the page reads as pure white. */
-    background-image:
-      radial-gradient(
-        ellipse 70% 50% at 50% -10%,
-        rgba(255, 222, 197, 0.35) 0%,
-        rgba(220, 230, 255, 0.18) 35%,
-        transparent 70%
-      );
-    background-attachment: fixed;
+    /* Pure white. Hers-style — no gradient, no decoration. */
+    background: var(--color-bg);
   }
   ::selection {
     background: rgba(10, 10, 12, 0.12);
