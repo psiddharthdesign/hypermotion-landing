@@ -34,7 +34,7 @@ export default function Page() {
 
 function Nav() {
   return (
-    <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+    <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
       <Link href="/" className="flex items-center gap-2">
         <Logo />
         <span className="text-[15px] font-semibold tracking-tight text-text">
@@ -241,7 +241,7 @@ $ claude mcp add hypermotion -- hypermotion-mcp`}
 function Footer() {
   return (
     <footer className="mt-12 border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <Logo />
           <span>hyper-motion · Apache 2.0 · v0.1.0 research preview</span>
