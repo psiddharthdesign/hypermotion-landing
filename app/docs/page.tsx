@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Docs — hyper-motion',
   description:
-    'How to install and run hyper-motion. First-time setup on macOS, CLI usage, and AI agent integration.',
+    'How to install and run hyper-motion. First-time setup on macOS, Figma plugin, and what is coming next.',
 }
 
 /**
@@ -32,7 +32,7 @@ export default function DocsPage() {
 
 function Nav() {
   return (
-    <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
+    <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
       <Link href="/" className="flex items-center gap-2">
         <Logo />
         <span className="text-[15px] font-semibold tracking-tight text-text">
@@ -76,7 +76,7 @@ function Logo() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-3xl px-6 pb-10 pt-16">
+    <section className="mx-auto max-w-4xl px-6 pb-10 pt-16">
       <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-text-subtle">
         Documentation
       </p>
@@ -84,9 +84,9 @@ function Hero() {
         Get started with hyper-motion.
       </h1>
       <p className="mt-4 max-w-xl text-[16px] leading-[1.55] text-text-muted">
-        The full install guide for the v0.1.0 research preview. More docs
-        — CLI flags, MCP integration, feature walkthroughs — are on the
-        way.
+        The install guide and Figma plugin setup for the v0.1.x research
+        preview. CLI, MCP integration, and feature walkthroughs are
+        coming soon.
       </p>
     </section>
   )
@@ -94,7 +94,7 @@ function Hero() {
 
 function InstallSection() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-12">
+    <section className="mx-auto max-w-4xl px-6 py-12">
       <h2
         id="install"
         className="scroll-mt-20 text-2xl font-semibold tracking-tight text-text"
@@ -209,7 +209,7 @@ function FigmaPluginSection() {
   return (
     <section
       id="figma-plugin"
-      className="mx-auto max-w-3xl px-6 py-12 scroll-mt-20"
+      className="mx-auto max-w-4xl px-6 py-12 scroll-mt-20"
     >
       <h2 className="text-2xl font-semibold tracking-tight text-text">
         Figma plugin
@@ -235,13 +235,19 @@ function FigmaPluginSection() {
 {`git clone https://github.com/psiddharthdesign/hypermotion.git
 cd hypermotion/figma-plugin
 pnpm install
-pnpm build`}
+pnpm build
+pnpm watch  # keep this running while you use the plugin`}
               </pre>
               <p className="mt-3 text-[14px] leading-[1.6] text-text-muted">
-                This produces{' '}
+                <span className="font-semibold text-text">pnpm build</span>{' '}
+                runs once and produces{' '}
                 <span className="font-mono">dist/code.js</span> and{' '}
                 <span className="font-mono">dist/ui.html</span> next to{' '}
-                <span className="font-mono">manifest.json</span>.
+                <span className="font-mono">manifest.json</span>.{' '}
+                <span className="font-semibold text-text">pnpm watch</span>{' '}
+                keeps the plugin in sync as you make changes — leave it
+                running in a terminal while you use it inside Figma so
+                edits to the plugin source are reflected on the next run.
               </p>
             </>
           }
@@ -331,7 +337,7 @@ function ComingSoon() {
         'target semantic properties.',
     },
     {
-      title: 'CLI & MCP',
+      title: 'CLI & MCP · coming soon',
       body:
         'Install the CLI, render from the terminal, wire the MCP server ' +
         'into Claude Code or Codex. Reference for every flag and tool.',
@@ -361,7 +367,7 @@ function ComingSoon() {
   ]
 
   return (
-    <section className="mx-auto max-w-3xl px-6 py-12">
+    <section className="mx-auto max-w-4xl px-6 py-12">
       <h2 className="text-2xl font-semibold tracking-tight text-text">
         More docs, coming soon
       </h2>
@@ -434,7 +440,7 @@ function ComingSoon() {
 function Footer() {
   return (
     <footer className="mt-12 border-t border-border">
-      <div className="mx-auto flex max-w-3xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <Logo />
           <span>hyper-motion · Apache 2.0 · v0.1.0 research preview</span>

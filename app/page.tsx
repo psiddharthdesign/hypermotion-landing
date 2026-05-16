@@ -165,8 +165,8 @@ function Features() {
     {
       title: 'AI-driveable',
       body:
-        'CLI + Model Context Protocol server included. Claude Code, Codex, ' +
-        'and any MCP-compatible agent can render scenes from the terminal.',
+        'CLI + Model Context Protocol server coming soon. Claude Code, Codex, ' +
+        'and any MCP-compatible agent will be able to drive renders directly.',
     },
   ]
   return (
@@ -200,33 +200,31 @@ function Cli() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-24">
       <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
-        CLI &amp; MCP
+        CLI &amp; MCP · coming soon
       </p>
       <h2 className="text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
         Render from the terminal.
       </h2>
       <p className="mt-3 max-w-xl text-[15px] leading-[1.55] text-text-muted">
-        Optional companion package. Drive renders from a script, a CI job,
-        or an AI coding agent — Claude Code, Codex, any MCP-compatible
-        client.
+        Companion package for scripted renders and AI-agent integration —
+        Claude Code, Codex, any MCP-compatible client. Coming soon.
       </p>
-      <div className="mt-7 max-w-2xl overflow-hidden rounded-2xl border border-border bg-surface">
+      <div className="mt-7 max-w-2xl overflow-hidden rounded-2xl border border-dashed border-border bg-surface opacity-80">
         <div className="border-b border-border bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-subtle">
-          Terminal
+          Terminal · preview
         </div>
-        <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-text">
-{`# install globally
+        <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-text-muted">
+{`# coming soon — sketch of the planned interface
+
 $ pnpm add -g @psiddharthdesign/hypermotion
 
-# render the current scene
 $ hypermotion render -o demo.mp4 -q 4k
 
-# wire it into Claude Code
 $ claude mcp add hypermotion -- hypermotion-mcp`}
         </pre>
       </div>
       <p className="mt-4 text-[12.5px] text-text-subtle">
-        Full guide ·{' '}
+        Roadmap ·{' '}
         <Link
           href="/docs"
           className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"
