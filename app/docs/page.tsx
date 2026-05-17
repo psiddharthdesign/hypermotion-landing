@@ -99,64 +99,60 @@ function InstallSection() {
         id="install"
         className="scroll-mt-20 text-2xl font-semibold tracking-tight text-text"
       >
-        First-time install on macOS
+        Install on macOS
       </h2>
       <p className="mt-3 text-[15px] leading-[1.6] text-text-muted">
-        The v0.1.x series ships unsigned, so macOS will block the first
-        open with a &ldquo;damaged&rdquo; dialog. Two-step setup, then it
-        opens normally forever.
+        One line in Terminal. The installer detects your Mac&rsquo;s
+        architecture (Apple Silicon or Intel), pulls the latest release,
+        copies the app into <span className="font-mono">/Applications</span>,
+        strips macOS&rsquo;s download quarantine, re-applies a local
+        signature, and opens it. Works for every future update without
+        changes.
       </p>
 
-      <ol className="mt-8 space-y-8">
-        <Step
-          n={1}
-          title={
-            <>
-              Drag <span className="font-mono">hyper-motion</span> to{' '}
-              <span className="font-mono">/Applications</span>
-            </>
-          }
-          body={
-            <p className="text-[14px] leading-[1.6] text-text-muted">
-              Download the{' '}
-              <Link
-                href="https://github.com/psiddharthdesign/hypermotion/releases"
-                className="text-text underline hover:text-accent"
-              >
-                latest .dmg
-              </Link>{' '}
-              — pick <span className="font-mono">*-arm64.dmg</span> for
-              Apple Silicon or <span className="font-mono">*.dmg</span> for
-              Intel. Open the DMG, drag{' '}
-              <span className="font-mono">hyper-motion</span> to{' '}
-              <span className="font-mono">Applications</span> like any
-              other Mac app.
-            </p>
-          }
-        />
-
-        <Step
-          n={2}
-          title="Open Terminal and paste these two lines"
-          body={
-            <>
-              <pre className="overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
-{`xattr -cr /Applications/hyper-motion.app
-codesign --force --deep --sign - /Applications/hyper-motion.app`}
-              </pre>
-              <p className="mt-3 text-[14px] leading-[1.6] text-text-muted">
-                Strips macOS&rsquo;s download quarantine and re-applies an
-                ad-hoc signature locally. After this, double-click the app
-                and it opens. macOS only asks once per install.
-              </p>
-            </>
-          }
-        />
-      </ol>
+      <pre className="mt-6 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
+{`curl -fsSL https://raw.githubusercontent.com/psiddharthdesign/hypermotion/main/install.sh | bash`}
+      </pre>
+      <p className="mt-3 text-[14px] leading-[1.55] text-text-muted">
+        That&rsquo;s the whole install. The app opens at the end of the
+        run. No drag-to-Applications, no &ldquo;damaged&rdquo; dialog, no
+        per-version steps.
+      </p>
+      <p className="mt-2 text-[13px] leading-[1.55] text-text-subtle">
+        Want a specific version? Append a tag:{' '}
+        <span className="font-mono">| bash -s -- v0.1.6</span>.
+      </p>
 
       <div className="mt-12 rounded-2xl border border-border bg-surface/60 p-6">
         <h3 className="text-[15px] font-semibold text-text">
-          Why is this needed?
+          Prefer to install by hand?
+        </h3>
+        <p className="mt-2 text-[14px] leading-[1.6] text-text-muted">
+          Download the latest{' '}
+          <Link
+            href="https://github.com/psiddharthdesign/hypermotion/releases"
+            className="text-text underline hover:text-accent"
+          >
+            .dmg from GitHub Releases
+          </Link>
+          {' '}(<span className="font-mono">*-arm64.dmg</span> for Apple
+          Silicon, <span className="font-mono">*.dmg</span> for Intel).
+          Drag the app into <span className="font-mono">/Applications</span>,
+          then run two lines in Terminal:
+        </p>
+        <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
+{`xattr -cr /Applications/hyper-motion.app
+codesign --force --deep --sign - /Applications/hyper-motion.app`}
+        </pre>
+        <p className="mt-3 text-[13px] leading-[1.55] text-text-subtle">
+          Same effect as the one-liner above, just spelled out. macOS
+          only asks once per install.
+        </p>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-border bg-surface/60 p-6">
+        <h3 className="text-[15px] font-semibold text-text">
+          Why is any of this needed?
         </h3>
         <p className="mt-2 text-[14px] leading-[1.6] text-text-muted">
           macOS Sequoia / Sonoma flag any unsigned download as
