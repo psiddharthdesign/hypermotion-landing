@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Link from 'next/link'
+import { formatVersionLabel, getLatestRelease } from './lib/github'
 
 /**
  * Landing page for hypermotion.app — light-mode minimal.
@@ -19,15 +20,23 @@ import Link from 'next/link'
  *  3. Features — 2-col grid of what actually ships today
  *  4. CLI snippet
  *  5. Footer
+ *
+ * Version: the hero kicker, features section heading, and footer line
+ * all derive from the latest GitHub release of psiddharthdesign/hypermotion,
+ * fetched at build-time via Next.js fetch with 1-hour revalidate. New
+ * releases land on the landing site within an hour — no manual bump.
+ * Falls back to "Research preview" if the API is unreachable.
  */
-export default function Page() {
+export default async function Page() {
+  const release = await getLatestRelease()
+  const version = formatVersionLabel(release)
   return (
     <main className="min-h-screen">
       <Nav />
-      <Hero />
-      <Features />
+      <Hero version={version} />
+      <Features version={version} />
       <Cli />
-      <Footer />
+      <Footer version={version} />
     </main>
   )
 }
@@ -47,6 +56,12 @@ function Nav() {
           className="px-3 py-1.5 text-text-muted hover:text-text"
         >
           Docs
+        </Link>
+        <Link
+          href="/changelog"
+          className="px-3 py-1.5 text-text-muted hover:text-text"
+        >
+          Changelog
         </Link>
         <Link
           href="https://github.com/psiddharthdesign/hypermotion"
@@ -77,11 +92,11 @@ function Logo() {
   )
 }
 
-function Hero() {
+function Hero({ version }: { version: string }) {
   return (
     <section className="mx-auto max-w-4xl px-6 pb-28 pt-24 sm:pt-40">
       <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
-        Open source · v0.1.0
+        Open source · {version}
       </p>
       <h1 className="max-w-3xl text-balance text-[44px] font-semibold leading-[1.05] tracking-tight text-text sm:text-[68px]">
         A motion tool for designers who think in layouts.
@@ -117,8 +132,8 @@ function Hero() {
   )
 }
 
-function Features() {
-  // Only ship features that actually work in v0.1.0.
+function Features({ version }: { version: string }) {
+  // Feature list reflects what's shipped in the latest tagged release.
   const items = [
     {
       title: 'Semantic keyframes',
@@ -172,7 +187,7 @@ function Features() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-24">
       <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
-        v0.1.0
+        {version}
       </p>
       <h2 className="mb-12 max-w-2xl text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
         What ships today.
@@ -236,15 +251,18 @@ $ claude mcp add hypermotion -- hypermotion-mcp`}
   )
 }
 
-function Footer() {
+function Footer({ version }: { version: string }) {
   return (
     <footer className="mt-12 border-t border-border">
       <div className="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <Logo />
-          <span>hyper-motion · Apache 2.0 · v0.1.0 research preview</span>
+          <span>hyper-motion · Apache 2.0 · {version} research preview</span>
         </div>
         <div className="flex flex-wrap items-center gap-5">
+          <Link href="/changelog" className="hover:text-text">
+            Changelog
+          </Link>
           <Link
             href="https://github.com/psiddharthdesign/hypermotion"
             className="hover:text-text"
