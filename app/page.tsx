@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Link from 'next/link'
+import { CopyableCodeBlock } from './components/CopyableCodeBlock'
 import { formatVersionLabel, getLatestRelease } from './lib/github'
 
 /**
@@ -228,15 +229,17 @@ function Cli() {
         <div className="border-b border-border bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-subtle">
           Terminal · preview
         </div>
-        <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-text-muted">
-{`# coming soon — sketch of the planned interface
+        <CopyableCodeBlock
+          className="rounded-none border-0 bg-surface"
+          preClassName="p-5 text-text-muted"
+          code={`# coming soon — sketch of the planned interface
 
 $ pnpm add -g @psiddharthdesign/hypermotion
 
 $ hypermotion render -o demo.mp4 -q 4k
 
 $ claude mcp add hypermotion -- hypermotion-mcp`}
-        </pre>
+        />
       </div>
       <p className="mt-4 text-[12.5px] text-text-subtle">
         Roadmap ·{' '}

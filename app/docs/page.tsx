@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { CopyableCodeBlock } from '../components/CopyableCodeBlock'
 
 export const metadata: Metadata = {
   title: 'Docs — hyper-motion',
@@ -110,9 +111,10 @@ function InstallSection() {
         changes.
       </p>
 
-      <pre className="mt-6 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
-{`curl -fsSL https://raw.githubusercontent.com/psiddharthdesign/hypermotion/main/install.sh | bash`}
-      </pre>
+      <CopyableCodeBlock
+        className="mt-6"
+        code="curl -fsSL https://raw.githubusercontent.com/psiddharthdesign/hypermotion/main/install.sh | bash"
+      />
       <p className="mt-3 text-[14px] leading-[1.55] text-text-muted">
         That&rsquo;s the whole install. The app opens at the end of the
         run. No drag-to-Applications, no &ldquo;damaged&rdquo; dialog, no
@@ -140,10 +142,11 @@ function InstallSection() {
           Drag the app into <span className="font-mono">/Applications</span>,
           then run two lines in Terminal:
         </p>
-        <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
-{`xattr -cr /Applications/hyper-motion.app
+        <CopyableCodeBlock
+          className="mt-3"
+          code={`xattr -cr /Applications/hyper-motion.app
 codesign --force --deep --sign - /Applications/hyper-motion.app`}
-        </pre>
+        />
         <p className="mt-3 text-[13px] leading-[1.55] text-text-subtle">
           Same effect as the one-liner above, just spelled out. macOS
           only asks once per install.
@@ -176,13 +179,14 @@ codesign --force --deep --sign - /Applications/hyper-motion.app`}
           Locally-built apps never get the quarantine flag, so they open
           without warnings.
         </p>
-        <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
-{`git clone https://github.com/psiddharthdesign/hypermotion.git
+        <CopyableCodeBlock
+          className="mt-3"
+          code={`git clone https://github.com/psiddharthdesign/hypermotion.git
 cd hypermotion
 pnpm install
 pnpm build:dir
 open release/mac-arm64/hyper-motion.app`}
-        </pre>
+        />
         <p className="mt-3 text-[13px] leading-[1.55] text-text-subtle">
           Requires Node 20+ and pnpm 9+. About 5 minutes end-to-end on a
           fresh machine.
@@ -227,13 +231,14 @@ function FigmaPluginSection() {
                 <span className="font-mono">figma-plugin/</span> inside the
                 main repo. Clone and build:
               </p>
-              <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-white p-4 font-mono text-[13px] leading-relaxed text-text">
-{`git clone https://github.com/psiddharthdesign/hypermotion.git
+              <CopyableCodeBlock
+                className="mt-3"
+                code={`git clone https://github.com/psiddharthdesign/hypermotion.git
 cd hypermotion/figma-plugin
 pnpm install
 pnpm build
 pnpm watch  # keep this running while you use the plugin`}
-              </pre>
+              />
               <p className="mt-3 text-[14px] leading-[1.6] text-text-muted">
                 <span className="font-semibold text-text">pnpm build</span>{' '}
                 runs once and produces{' '}
