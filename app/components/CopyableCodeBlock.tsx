@@ -52,7 +52,7 @@ export function CopyableCodeBlock({
         onClick={copyCode}
         aria-label={copied ? 'Copied command' : 'Copy command'}
         title={copied ? 'Copied' : 'Copy'}
-        className="absolute right-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border-strong bg-white text-text-muted shadow-sm transition hover:border-text-muted hover:text-text focus:outline-none focus:ring-2 focus:ring-text/20"
+        className="absolute right-2.5 top-2.5 inline-flex h-7 w-7 items-center justify-center rounded-md border border-border-strong bg-white text-text-muted opacity-0 transition hover:border-text-muted hover:text-text focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-text/20 group-hover:opacity-100"
       >
         {copied ? <CheckIcon /> : <CopyIcon />}
       </button>
@@ -70,7 +70,7 @@ function CopyIcon() {
     <svg
       aria-hidden
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-3.5 w-3.5"
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
@@ -88,7 +88,7 @@ function CheckIcon() {
     <svg
       aria-hidden
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-3.5 w-3.5"
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
