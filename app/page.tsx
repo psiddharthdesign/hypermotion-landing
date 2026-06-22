@@ -103,8 +103,8 @@ function Hero({ version }: { version: string }) {
         A motion tool for designers who think in layouts.
       </h1>
       <p className="mt-8 max-w-xl text-[17px] leading-[1.55] text-text-muted sm:text-[18px]">
-        Auto-layout, 3D camera, multi-chapter timeline, pixel-correct
-        MP4 / WebM / GIF. Open source, free forever.
+        Auto-layout, 3D camera, focus blur, video import, audio tracks,
+        and MP4 export with sound. Open source, free forever.
       </p>
       <div className="mt-10 flex flex-wrap items-center gap-3">
         <Link
@@ -137,34 +137,40 @@ function Features({ version }: { version: string }) {
   // Feature list reflects what's shipped in the latest tagged release.
   const items = [
     {
-      title: 'Semantic keyframes',
+      title: 'Auto layout + 3D',
       body:
-        'Animate variant, opacity, scale, rotation, gap, padding — not raw ' +
-        'x / y. Layouts can shift without breaking timing.',
+        'Build with flex containers, then move the scene in depth with camera ' +
+        'position, rotation, perspective, and grouped 3D behavior.',
     },
     {
-      title: 'Auto layout',
+      title: 'Camera focus blur',
       body:
-        'Flex containers with gap, padding, alignment. The same layout model ' +
-        'designers already think in from Figma.',
+        'Place a focus area on the scene, tune radius, falloff, and blur, then ' +
+        'preview and export the same look without a separate compositing pass.',
     },
     {
-      title: '3D camera',
+      title: 'Audio timeline',
       body:
-        'X / Y / Z position, three-axis rotation, real depth-of-field with ' +
-        'aperture and focus distance. Keyframe it like any other property.',
+        'Import audio clips, see decoded waveforms, move and trim them on the ' +
+        'timeline, and mute or adjust volume per clip.',
     },
     {
-      title: 'Timeline with chapters',
+      title: 'Export with sound',
       body:
-        'Named sections you can isolate, loop, and export. Pick any ' +
-        'combination of chapters and ship them as one concatenated file.',
+        'MP4 export now mixes timeline audio into the rendered animation, so the ' +
+        'video you design in Hyper Motion can ship with sound.',
     },
     {
-      title: 'Pixel-correct export',
+      title: 'Video import',
       body:
-        'MP4 (H.264 via WebCodecs) up to 4K. WebM via tab capture. GIF via ' +
-        'gifenc. Captured directly from the renderer — no screen recording.',
+        'Bring video onto the canvas, animate it like any other scene object, ' +
+        'and include its media timing in the final render path.',
+    },
+    {
+      title: 'Work area preview',
+      body:
+        'Set a work area, loop it while iterating, stop at its end, or use that ' +
+        'same range for export. Preview and output stay in sync.',
     },
     {
       title: 'Figma import',
@@ -177,12 +183,6 @@ function Features({ version }: { version: string }) {
       body:
         'Apache 2.0, full source on GitHub. Yjs-backed data model from day ' +
         'one — real-time collab arrives without a rewrite.',
-    },
-    {
-      title: 'AI-driveable',
-      body:
-        'CLI + Model Context Protocol server coming soon. Claude Code, Codex, ' +
-        'and any MCP-compatible agent will be able to drive renders directly.',
     },
   ]
   return (
@@ -216,14 +216,15 @@ function Cli() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-24">
       <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
-        CLI &amp; MCP · coming soon
+        CLI &amp; MCP
       </p>
       <h2 className="text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
         Render from the terminal.
       </h2>
       <p className="mt-3 max-w-xl text-[15px] leading-[1.55] text-text-muted">
         Companion package for scripted renders and AI-agent integration —
-        Claude Code, Codex, any MCP-compatible client. Coming soon.
+        Claude Code, Codex, and any MCP-compatible client can render scenes
+        from the current desktop app.
       </p>
       <div className="mt-7 max-w-2xl overflow-hidden rounded-2xl border border-dashed border-border bg-surface opacity-80">
         <div className="border-b border-border bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-subtle">
@@ -232,11 +233,9 @@ function Cli() {
         <CopyableCodeBlock
           className="rounded-none border-0 bg-surface"
           preClassName="p-5 text-text-muted"
-          code={`# coming soon — sketch of the planned interface
+          code={`$ pnpm add -g @psiddharthdesign/hypermotion
 
-$ pnpm add -g @psiddharthdesign/hypermotion
-
-$ hypermotion render -o demo.mp4 -q 4k
+$ hypermotion render -o demo.mp4 -q 4k --fps 60
 
 $ claude mcp add hypermotion -- hypermotion-mcp`}
         />
