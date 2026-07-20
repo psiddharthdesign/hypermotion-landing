@@ -103,8 +103,9 @@ function Hero({ version }: { version: string }) {
         A motion tool for designers who think in layouts.
       </h1>
       <p className="mt-8 max-w-xl text-[17px] leading-[1.55] text-text-muted sm:text-[18px]">
-        Auto-layout, 3D camera, focus blur, video import, audio tracks,
-        and MP4 export with sound. Open source, free forever.
+        Animate text by letter, word, or line, shape its stagger on a curve,
+        and finish 3D scenes with focus blur, Bloom, and Chromatic Aberration.
+        Export up to 4K with sound.
       </p>
       <div className="mt-10 flex flex-wrap items-center gap-3">
         <Link
@@ -137,40 +138,40 @@ function Features({ version }: { version: string }) {
   // Feature list reflects what's shipped in the latest tagged release.
   const items = [
     {
-      title: 'Auto layout + 3D',
+      title: 'Curve-driven text',
       body:
-        'Build with flex containers, then move the scene in depth with camera ' +
-        'position, rotation, perspective, and grouped 3D behavior.',
+        'Animate letters, words, or lines with XYZ motion, typewriter, and ' +
+        'scramble. Draw a Bézier path and shape how the sequence enters.',
     },
     {
-      title: 'Camera focus blur',
+      title: 'Stagger you can direct',
       body:
-        'Place a focus area on the scene, tune radius, falloff, and blur, then ' +
-        'preview and export the same look without a separate compositing pass.',
+        'Choose forward or reverse order for layers, letters, words, and lines. ' +
+        'Duplicate a stagger or create an exact return without rebuilding keyframes.',
     },
     {
-      title: 'Audio timeline',
+      title: 'Camera effects',
       body:
-        'Import audio clips, see decoded waveforms, move and trim them on the ' +
-        'timeline, and mute or adjust volume per clip.',
+        'Add Bloom and Chromatic Aberration to the active camera, keyframe their ' +
+        'controls, and keep the same look in preview and final export.',
     },
     {
-      title: 'Export with sound',
+      title: 'Focus with depth',
       body:
-        'MP4 export now mixes timeline audio into the rendered animation, so the ' +
-        'video you design in Hyper Motion can ship with sound.',
+        'Move an animated focus point through the scene and tune aperture, blur, ' +
+        'falloff, and bokeh for progressive depth of field.',
     },
     {
-      title: 'Video import',
+      title: 'Smoother playback',
       body:
-        'Bring video onto the canvas, animate it like any other scene object, ' +
-        'and include its media timing in the final render path.',
+        'Text-heavy scenes and camera effects use bounded preview rendering, ' +
+        'while final exports retain full quality.',
     },
     {
-      title: 'Work area preview',
+      title: 'Timeline + media',
       body:
-        'Set a work area, loop it while iterating, stop at its end, or use that ' +
-        'same range for export. Preview and output stay in sync.',
+        'Combine animation, video, and waveform-backed audio on one timeline, ' +
+        'then preview or export the exact work area you choose.',
     },
     {
       title: 'Figma import',
@@ -179,10 +180,10 @@ function Features({ version }: { version: string }) {
         'individual stroke weights, and layout grids onto the canvas.',
     },
     {
-      title: 'Open source',
+      title: 'CLI + MCP',
       body:
-        'Apache 2.0, full source on GitHub. Yjs-backed data model from day ' +
-        'one — real-time collab arrives without a rewrite.',
+        'Create, inspect, validate, patch, open, and render .hype scenes from ' +
+        'scripts or any MCP-compatible AI agent.',
     },
   ]
   return (
@@ -216,15 +217,15 @@ function Cli() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-24">
       <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-text-subtle">
-        CLI &amp; MCP
+        CLI &amp; MCP · source preview
       </p>
       <h2 className="text-balance text-2xl font-semibold tracking-tight text-text sm:text-3xl">
-        Render from the terminal.
+        Create and render from code.
       </h2>
       <p className="mt-3 max-w-xl text-[15px] leading-[1.55] text-text-muted">
-        Companion package for scripted renders and AI-agent integration —
-        Claude Code, Codex, and any MCP-compatible client can render scenes
-        from the current desktop app.
+        Create, inspect, patch, validate, open, and render saved .hype scenes
+        from the repository today. The MCP server connects the same workflow
+        to Claude Code, Codex, and other compatible clients.
       </p>
       <div className="mt-7 max-w-2xl overflow-hidden rounded-2xl border border-dashed border-border bg-surface opacity-80">
         <div className="border-b border-border bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.15em] text-text-subtle">
@@ -233,20 +234,19 @@ function Cli() {
         <CopyableCodeBlock
           className="rounded-none border-0 bg-surface"
           preClassName="p-5 text-text-muted"
-          code={`$ pnpm add -g @psiddharthdesign/hypermotion
-
-$ hypermotion render -o demo.mp4 -q 4k --fps 60
-
-$ claude mcp add hypermotion -- hypermotion-mcp`}
+          code={`$ git clone https://github.com/psiddharthdesign/hypermotion.git
+$ cd hypermotion && pnpm install
+$ pnpm --dir cli build
+$ node cli/bin/hypermotion.mjs --help`}
         />
       </div>
       <p className="mt-4 text-[12.5px] text-text-subtle">
-        Roadmap ·{' '}
+        CLI source and MCP setup ·{' '}
         <Link
-          href="/docs"
+          href="https://github.com/psiddharthdesign/hypermotion/blob/main/AGENTS.md"
           className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"
         >
-          read the docs
+          read the guide
         </Link>
       </p>
     </section>

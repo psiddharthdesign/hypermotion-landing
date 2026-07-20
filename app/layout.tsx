@@ -4,10 +4,10 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const SITE_URL = 'https://hypermotion.app'
-const TITLE = 'hyper-motion — Motion design with layout, 3D, and audio'
+const TITLE = 'hyper-motion — Text animation, 3D motion, and camera effects'
 const DESCRIPTION =
-  "Native motion tool with Figma's structural layout. Auto layout, 3D camera, " +
-  'focus blur, video import, and MP4 export with sound.'
+  'Open-source motion design for layout-minded designers. Animate text on ' +
+  'editable curves, build in 3D, add camera effects, and export up to 4K with sound.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   keywords: [
     'motion design',
     'animation tool',
+    'text animation',
+    '3D motion',
+    'camera effects',
     'figma',
     'jitter',
     'lottie',

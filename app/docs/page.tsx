@@ -7,16 +7,15 @@ import { CopyableCodeBlock } from '../components/CopyableCodeBlock'
 export const metadata: Metadata = {
   title: 'Docs — hyper-motion',
   description:
-    'How to install and run hyper-motion. First-time setup on macOS, Figma plugin, and what is coming next.',
+    'Install hyper-motion, connect the Figma plugin, and use the CLI or MCP server to create and render scenes.',
 }
 
 /**
  * Documentation hub.
  *
- * v0.1.0 has one finished doc (the macOS install guide) and stubs for
- * everything else. The hub format is forward-compatible — when CLI,
- * MCP, features, and FAQ docs are written, they get added as their own
- * sections without restructuring.
+ * The v0.1.x hub covers installation, the Figma plugin, and the source-preview
+ * CLI/MCP workflow. The remaining guides can be added as their own sections
+ * without restructuring the page.
  */
 export default function DocsPage() {
   return (
@@ -25,6 +24,7 @@ export default function DocsPage() {
       <Hero />
       <InstallSection />
       <FigmaPluginSection />
+      <CliMcpSection />
       <ComingSoon />
       <Footer />
     </main>
@@ -46,6 +46,12 @@ function Nav() {
           className="px-3 py-1.5 font-medium text-text"
         >
           Docs
+        </Link>
+        <Link
+          href="/changelog"
+          className="px-3 py-1.5 text-text-muted hover:text-text"
+        >
+          Changelog
         </Link>
         <Link
           href="https://github.com/psiddharthdesign/hypermotion"
@@ -85,9 +91,8 @@ function Hero() {
         Get started with hyper-motion.
       </h1>
       <p className="mt-4 max-w-xl text-[16px] leading-[1.55] text-text-muted">
-        The install guide and Figma plugin setup for the v0.1.x research
-        preview. CLI, MCP integration, and feature walkthroughs are
-        coming soon.
+        Install the macOS app, connect the Figma plugin, and use the CLI or
+        MCP server to create, inspect, patch, and render scenes.
       </p>
     </section>
   )
@@ -122,7 +127,7 @@ function InstallSection() {
       </p>
       <p className="mt-2 text-[13px] leading-[1.55] text-text-subtle">
         Want a specific version? Append a tag:{' '}
-        <span className="font-mono">| bash -s -- v0.1.6</span>.
+        <span className="font-mono">| bash -s -- v0.1.12</span>.
       </p>
 
       <div className="mt-12 rounded-2xl border border-border bg-surface/60 p-6">
@@ -305,6 +310,47 @@ pnpm watch  # keep this running while you use the plugin`}
   )
 }
 
+function CliMcpSection() {
+  return (
+    <section
+      id="cli-mcp"
+      className="mx-auto max-w-4xl px-6 py-12 scroll-mt-20"
+    >
+      <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-text-subtle">
+        Source preview
+      </p>
+      <h2 className="text-2xl font-semibold tracking-tight text-text">
+        CLI and MCP
+      </h2>
+      <p className="mt-3 max-w-2xl text-[15px] leading-[1.6] text-text-muted">
+        Build the repository&rsquo;s CLI to create, inspect, validate, patch,
+        open, and render saved <span className="font-mono">.hype</span>{' '}
+        scenes. The MCP server exposes the same workflow to compatible AI
+        agents. Rendering uses the installed desktop app.
+      </p>
+      <CopyableCodeBlock
+        className="mt-6"
+        code={`git clone https://github.com/psiddharthdesign/hypermotion.git
+cd hypermotion
+pnpm install
+pnpm --dir cli build
+node cli/bin/hypermotion.mjs --help`}
+      />
+      <p className="mt-4 text-[14px] leading-[1.6] text-text-muted">
+        Follow the{' '}
+        <Link
+          href="https://github.com/psiddharthdesign/hypermotion/blob/main/AGENTS.md"
+          className="font-medium text-text underline hover:text-accent"
+        >
+          CLI and MCP setup guide
+        </Link>{' '}
+        for render commands, client configuration, scene authoring, and
+        troubleshooting.
+      </p>
+    </section>
+  )
+}
+
 function Step({
   n,
   title,
@@ -338,12 +384,6 @@ function ComingSoon() {
         'target semantic properties.',
     },
     {
-      title: 'CLI & MCP · coming soon',
-      body:
-        'Install the CLI, render from the terminal, wire the MCP server ' +
-        'into Claude Code or Codex. Reference for every flag and tool.',
-    },
-    {
       title: 'Features',
       body:
         '3D camera, multi-chapter exports, masks, effects, Figma import. ' +
@@ -360,11 +400,6 @@ function ComingSoon() {
       body:
         'Common questions, troubleshooting, what works today vs. roadmap.',
     },
-    {
-      title: 'Release notes',
-      body:
-        'Per-version changes. Currently living in RELEASES.md on GitHub.',
-    },
   ]
 
   return (
@@ -373,8 +408,8 @@ function ComingSoon() {
         More docs, coming soon
       </h2>
       <p className="mt-3 text-[15px] leading-[1.6] text-text-muted">
-        v0.1.0 is a research preview, and the docs are catching up.
-        Here&rsquo;s what&rsquo;s queued. Until each lands, the source
+        v0.1.x is a research preview, and the docs are catching up.
+        Here&rsquo;s what&rsquo;s queued. Until each guide lands, the source
         of truth is the GitHub repo —{' '}
         <Link
           href="https://github.com/psiddharthdesign/hypermotion"
@@ -444,7 +479,7 @@ function Footer() {
       <div className="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-8 text-[13px] text-text-muted sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <Logo />
-          <span>hyper-motion · Apache 2.0 · v0.1.0 research preview</span>
+          <span>hyper-motion · Apache 2.0 · v0.1.x research preview</span>
         </div>
         <div className="flex flex-wrap items-center gap-5">
           <Link href="/" className="hover:text-text">

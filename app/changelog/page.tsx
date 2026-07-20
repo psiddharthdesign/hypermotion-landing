@@ -35,7 +35,7 @@ import {
 export const metadata: Metadata = {
   title: 'Changelog — hyper-motion',
   description:
-    "Release history for hyper-motion. Auto-updates from the project's GitHub releases — new versions appear within an hour of publishing.",
+    'Release notes for hyper-motion: new animation tools, camera effects, workflow improvements, and fixes.',
 }
 
 export default async function ChangelogPage() {
@@ -56,14 +56,15 @@ export default async function ChangelogPage() {
           What shipped, when.
         </h1>
         <p className="mt-6 max-w-xl text-[15.5px] leading-[1.55] text-text-muted">
-          Auto-synced from the{' '}
+          Every release, from new motion tools to playback and export fixes.
+          Notes sync from{' '}
           <Link
             href="https://github.com/psiddharthdesign/hypermotion/releases"
             className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"
           >
             GitHub releases
           </Link>{' '}
-          page. New versions appear here within an hour of publishing.
+          within an hour.
         </p>
       </section>
 
@@ -303,8 +304,18 @@ function parseBlocks(source: string): MdBlock[] {
     if (/^[-*]\s+/.test(line)) {
       const bullets: string[] = []
       while (i < lines.length && /^[-*]\s+/.test(lines[i])) {
-        bullets.push(lines[i].replace(/^[-*]\s+/, ''))
+        let bullet = lines[i].replace(/^[-*]\s+/, '')
         i++
+        while (
+          i < lines.length &&
+          lines[i].trim() !== '' &&
+          /^\s+/.test(lines[i]) &&
+          !/^\s*[-*]\s+/.test(lines[i])
+        ) {
+          bullet += ` ${lines[i].trim()}`
+          i++
+        }
+        bullets.push(bullet)
       }
       blocks.push({ kind: 'list', lines: bullets })
       continue
