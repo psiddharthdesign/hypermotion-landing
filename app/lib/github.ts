@@ -9,11 +9,10 @@
  * the unauthenticated 60 req/hr rate limit — would live as a server env
  * var, never shipped to the client.
  *
- * Caching: Next.js fetch's `revalidate` option re-runs the request at most
- * once per the given interval. With our static-ish landing site, an hour
- * is plenty — new releases land within an hour of being published, no
- * code change needed. Cloudflare Pages + Next.js honors this on builds
- * triggered by deploy hooks; local dev hits the network every reload.
+ * Build-time data: the site uses Next.js static export, so these requests
+ * run while a deployment is being built and never while serving visitors.
+ * They use Next.js 15's default static-prerender fetch behavior: each new
+ * build reads GitHub without configuring a persistent revalidation window.
  *
  * Graceful failure: every fetcher returns a sane fallback when the API
  * is unreachable or rate-limited so the landing site still renders.
@@ -24,11 +23,6 @@
 const OWNER = 'psiddharthdesign'
 const REPO = 'hypermotion'
 const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}`
-
-// Re-fetch at most once per hour. New release → at most 1h delay before
-// the landing page picks it up. Lower this to a few minutes if release
-// cadence speeds up.
-const REVALIDATE_SECONDS = 60 * 60
 
 export interface GithubRelease {
   /** Tag name, e.g. "v0.1.9". */
@@ -55,7 +49,6 @@ export async function getLatestRelease(): Promise<GithubRelease | null> {
   try {
     const res = await fetch(`${API_BASE}/releases/latest`, {
       headers: { Accept: 'application/vnd.github+json' },
-      next: { revalidate: REVALIDATE_SECONDS },
     })
     if (!res.ok) return null
     const data = (await res.json()) as RawRelease
@@ -76,7 +69,6 @@ export async function getAllReleases(): Promise<GithubRelease[]> {
     // call. If we ever pass 100 releases, paginate via the Link header.
     const res = await fetch(`${API_BASE}/releases?per_page=100`, {
       headers: { Accept: 'application/vnd.github+json' },
-      next: { revalidate: REVALIDATE_SECONDS },
     })
     if (!res.ok) return []
     const data = (await res.json()) as RawRelease[]

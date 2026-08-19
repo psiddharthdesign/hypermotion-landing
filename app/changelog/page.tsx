@@ -15,15 +15,15 @@ import {
  * Changelog page.
  *
  * Server component that fetches every release from
- * github.com/psiddharthdesign/hypermotion at build time (1-hour
- * revalidate, see `app/lib/github.ts`). Each release renders as a
+ * github.com/psiddharthdesign/hypermotion while the static site is built
+ * (see `app/lib/github.ts`). Each release renders as a
  * stacked card: version tag, publish date, full markdown body of the
  * release notes.
  *
- * Why server-fetched and not statically baked: shipping a new release
- * shouldn't require touching the landing site repo. Tag → workflow
- * → release published → next page request (or next 1h revalidate)
- * picks it up. Same path the home page version chip uses.
+ * Shipping a release does not require touching this repository: the
+ * release workflow triggers a new deployment, whose build fetches GitHub
+ * and bakes the result into static files. The live site never regenerates
+ * this page in response to traffic.
  *
  * Markdown rendering: deliberately a tiny inline parser instead of
  * pulling in marked / remark / react-markdown. The release notes we
@@ -35,7 +35,7 @@ import {
 export const metadata: Metadata = {
   title: 'Changelog — hyper-motion',
   description:
-    'Release notes for hyper-motion: new animation tools, camera effects, workflow improvements, and fixes.',
+    'Release notes for hyper-motion: new animation tools, camera effects, workflow improvements, and fixes, synced during deployment.',
 }
 
 export default async function ChangelogPage() {
@@ -64,7 +64,8 @@ export default async function ChangelogPage() {
           >
             GitHub releases
           </Link>{' '}
-          within an hour.
+          during each deployment. New versions appear after the next site
+          build.
         </p>
       </section>
 
@@ -191,7 +192,8 @@ function EmptyState() {
         Couldn’t reach GitHub right now.
       </p>
       <p className="mt-2 text-[13.5px] text-text-muted">
-        The release history is fetched from the GitHub API. Try{' '}
+        The release history is fetched from the GitHub API during deployment.
+        Try{' '}
         <Link
           href="https://github.com/psiddharthdesign/hypermotion/releases"
           className="underline decoration-text-subtle/40 underline-offset-[3px] hover:text-text"

@@ -24,8 +24,8 @@ import { formatVersionLabel, getLatestRelease } from './lib/github'
  *
  * Version: the hero kicker, features section heading, and footer line
  * all derive from the latest GitHub release of psiddharthdesign/hypermotion,
- * fetched at build-time via Next.js fetch with 1-hour revalidate. New
- * releases land on the landing site within an hour — no manual bump.
+ * fetched while the static site is built. A release-triggered deployment
+ * publishes the new version without any request-time regeneration.
  * Falls back to "Research preview" if the API is unreachable.
  */
 export default async function Page() {

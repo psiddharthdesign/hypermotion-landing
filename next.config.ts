@@ -3,18 +3,18 @@ import type { NextConfig } from 'next'
 /**
  * Next.js config for hypermotion.app.
  *
- * Deployment target: Vercel or Cloudflare Pages. Both auto-detect Next.js
- * — no custom build command required. For Cloudflare Pages specifically,
- * the App Router + Server Components flow uses the `@cloudflare/next-on-pages`
- * adapter; add it before deploying there.
+ * The landing site is emitted as static HTML/CSS/JS. Server Components and
+ * their GitHub requests run only during `next build`; production traffic is
+ * served directly from the CDN without a Node.js function.
  */
 const nextConfig: NextConfig = {
+  output: 'export',
   reactStrictMode: true,
   poweredByHeader: false,
-  // No image domains yet — switch on remotePatterns when we host preview
-  // GIFs / screenshots on R2 or a CDN.
+  // Static export has no image optimization server. Keep future next/image
+  // usage compatible with the no-runtime deployment model.
   images: {
-    formats: ['image/avif', 'image/webp'],
+    unoptimized: true,
   },
 }
 
