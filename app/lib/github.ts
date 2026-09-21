@@ -23,6 +23,13 @@
 const OWNER = 'psiddharthdesign'
 const REPO = 'hypermotion'
 const API_BASE = `https://api.github.com/repos/${OWNER}/${REPO}`
+const REQUEST_TIMEOUT_MS = 10_000
+
+const GITHUB_HEADERS = {
+  Accept: 'application/vnd.github+json',
+  'User-Agent': 'hypermotion-landing-build',
+  'X-GitHub-Api-Version': '2022-11-28',
+}
 
 export interface GithubRelease {
   /** Tag name, e.g. "v0.1.9". */
@@ -48,12 +55,17 @@ export interface GithubRelease {
 export async function getLatestRelease(): Promise<GithubRelease | null> {
   try {
     const res = await fetch(`${API_BASE}/releases/latest`, {
-      headers: { Accept: 'application/vnd.github+json' },
+      headers: GITHUB_HEADERS,
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     })
-    if (!res.ok) return null
+    if (!res.ok) {
+      console.warn(`[github] Latest release request failed: HTTP ${res.status}`)
+      return null
+    }
     const data = (await res.json()) as RawRelease
     return normalizeRelease(data)
-  } catch {
+  } catch (error) {
+    console.warn('[github] Latest release request failed:', error)
     return null
   }
 }
@@ -68,12 +80,17 @@ export async function getAllReleases(): Promise<GithubRelease[]> {
     // `per_page=100` is the GitHub max; covers many releases in one
     // call. If we ever pass 100 releases, paginate via the Link header.
     const res = await fetch(`${API_BASE}/releases?per_page=100`, {
-      headers: { Accept: 'application/vnd.github+json' },
+      headers: GITHUB_HEADERS,
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     })
-    if (!res.ok) return []
+    if (!res.ok) {
+      console.warn(`[github] Release history request failed: HTTP ${res.status}`)
+      return []
+    }
     const data = (await res.json()) as RawRelease[]
     return data.map(normalizeRelease)
-  } catch {
+  } catch (error) {
+    console.warn('[github] Release history request failed:', error)
     return []
   }
 }
